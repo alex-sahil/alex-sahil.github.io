@@ -7,117 +7,152 @@
 <title>ALEX SAHIL CHOUDHARY</title>
 
 <meta property="og:title" content="ALEX SAHIL CHOUDHARY">
-<meta property="og:description" content="No limits. No fear. Just my own way.">
-<meta property="og:image" content="file_000000000d48c81fa95dc8bbb64a.png">
+<meta property="og:description" content="Cyber Security • Hacker Style • Alex Sahil">
+<meta property="og:image" content="https://alex-sahil.github.io/banner.png">
 <meta property="og:type" content="website">
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Orbitron',sans-serif;
 }
 
 body{
 background:#000;
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
 overflow:hidden;
+color:#fff;
+height:100vh;
 }
 
-body::before{
-content:"010101010101010101010101";
-position:absolute;
-font-size:20px;
-color:#00ff55;
-opacity:.08;
+canvas{
+position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-word-break:break-all;
-padding:20px;
-animation:move 12s linear infinite;
+z-index:-1;
 }
 
-@keyframes move{
-0%{transform:translateY(0);}
-100%{transform:translateY(-200px);}
-}
-
-.box{
-position:relative;
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 text-align:center;
-z-index:2;
+width:100%;
 padding:20px;
 }
 
-.profile-img{
-width:150px;
-height:150px;
+.profile{
+width:220px;
+height:220px;
 border-radius:50%;
+border:4px solid #00ff55;
+box-shadow:
+0 0 20px #00ff55,
+0 0 60px #00ff55;
 object-fit:cover;
-border:3px solid #00ff55;
-box-shadow:0 0 20px #00ff55;
-margin-bottom:20px;
+animation:pulse 2s infinite;
 }
 
-h1{
-font-size:55px;
-color:#ff2d2d;
-text-shadow:0 0 20px red;
+@keyframes pulse{
+
+0%{
+transform:scale(1);
 }
 
-h3{
-margin-top:10px;
-color:#00ff99;
-}
-
-p{
-margin-top:20px;
-font-size:18px;
-color:#ccc;
-}
-
-.small{
-margin-top:30px;
-font-size:14px;
-color:#00ff55;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
 50%{
-opacity:.2;
+transform:scale(1.05);
 }
+
+100%{
+transform:scale(1);
 }
-</style>
 
-</head>
+}
 
-<body>
+.glitch{
 
-<div class="box">
+font-size:55px;
+font-weight:900;
+margin-top:25px;
+color:#fff;
+text-shadow:
+3px 3px red,
+-3px -3px cyan;
 
+animation:glitch .8s infinite;
 
-<img src="file_00000000d48c81fa95dc67a8fbbbbb4e.png" alt="Profile Picture" class="profile-img">
+}
 
-<h1>ALEX SAHIL CHOUDHARY</h1>
+@keyframes glitch{
 
-<h3>ACCESS GRANTED</h3>
+0%{
+transform:translate(0);
+}
 
-<p>
-No fear. No limits.<br>
-Keep watching.
-</p>
+25%{
+transform:translate(-2px,2px);
+}
 
-<div class="small">
-I AM YOUR DAD • I AM YOUR DAD • I AM YOUR DAD
-</div>
+50%{
+transform:translate(2px,-2px);
+}
 
-</div>
+75%{
+transform:translate(-2px,-2px);
+}
 
-</body>
-</html>
+100%{
+transform:translate(0);
+}
+
+}
+
+.status{
+
+margin-top:20px;
+font-size:20px;
+color:#00ff55;
+
+}
+
+.typing{
+
+margin-top:15px;
+font-size:17px;
+color:#ffffff;
+min-height:25px;
+
+}
+
+.social{
+
+margin-top:30px;
+
+}
+
+.social a{
+
+text-decoration:none;
+color:#00ff55;
+border:2px solid #00ff55;
+padding:12px 25px;
+margin:8px;
+display:inline-block;
+border-radius:30px;
+transition:.4s;
+
+}
+
+.social a:hover{
+
+background:#00ff55;
+color:#000;
+
+}
