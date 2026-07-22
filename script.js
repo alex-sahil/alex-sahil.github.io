@@ -1,51 +1,65 @@
-const typing = document.getElementById("typing");
+// Matrix Background Animation
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
 
-const texts = [
-"ALEX SAHIL YOUR FATHER",
-"KING OF MY OWN WORLD",
-"DON'T PLAY WITH ME",
-"RULES ARE MADE BY ME",
-"NO COPY ONLY ORIGINAL",
-"CYBER MODE ACTIVATED"
-];
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+const fontSize = 16;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(3, 10, 5, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#00ff66';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 33);
+
+// Typing Animation
+const textArray = ["ALEX SAHIL Y", "CYBER EXPERT", "FULL STACK DEVELOPER"];
 let textIndex = 0;
 let charIndex = 0;
+const typingElement = document.getElementById("typing");
 
-
-function typingEffect(){
-
-if(charIndex < texts[textIndex].length){
-
-typing.innerHTML += texts[textIndex].charAt(charIndex);
-
-charIndex++;
-
-setTimeout(typingEffect,100);
-
+function typeText() {
+    if (charIndex < textArray[textIndex].length) {
+        typingElement.innerHTML += textArray[textIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, 100);
+    } else {
+        setTimeout(eraseText, 2000);
+    }
 }
 
-else{
-
-setTimeout(()=>{
-
-typing.innerHTML="";
-
-charIndex=0;
-
-textIndex++;
-
-if(textIndex >= texts.length){
-textIndex=0;
+function eraseText() {
+    if (charIndex > 0) {
+        typingElement.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseText, 50);
+    } else {
+        textIndex = (textIndex + 1) % textArray.length;
+        setTimeout(typeText, 500);
+    }
 }
 
-typingEffect();
-
-},1500);
-
-}
-
-}
-
-
-typingEffect();
+document.addEventListener("DOMContentLoaded", () => {
+    typeText();
+});
