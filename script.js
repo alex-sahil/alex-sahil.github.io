@@ -1,4 +1,4 @@
-// Matrix Background Animation
+// --- Matrix Code Rain Effect ---
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 
@@ -33,8 +33,18 @@ function drawMatrix() {
 }
 setInterval(drawMatrix, 33);
 
-// Typing Animation
-const textArray = ["ALEX SAHIL Y", "CYBER EXPERT", "FULL STACK DEVELOPER"];
+// --- High-Attitude Dynamic Typing List ---
+const textArray = [
+    "ALEX SAHIL YOUR FATHER",
+    "KING OF MY OWN WORLD",
+    "DON'T PLAY WITH FIRE",
+    "MY GAME, MY RULES",
+    "ORIGINAL IS ALWAYS UNBEATABLE",
+    "SILENT BUT DANGEROUS",
+    "CYBER MODE ACTIVATED",
+    "BORN TO RULE, NOT TO FOLLOW"
+];
+
 let textIndex = 0;
 let charIndex = 0;
 const typingElement = document.getElementById("typing");
@@ -43,9 +53,9 @@ function typeText() {
     if (charIndex < textArray[textIndex].length) {
         typingElement.innerHTML += textArray[textIndex].charAt(charIndex);
         charIndex++;
-        setTimeout(typeText, 100);
+        setTimeout(typeText, 90); // টাইপিংয়ের স্পিড
     } else {
-        setTimeout(eraseText, 2000);
+        setTimeout(eraseText, 1800); // লেখাটি কতক্ষণ থাকবে
     }
 }
 
@@ -53,10 +63,10 @@ function eraseText() {
     if (charIndex > 0) {
         typingElement.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
         charIndex--;
-        setTimeout(eraseText, 50);
+        setTimeout(eraseText, 40); // মোছার স্পিড
     } else {
         textIndex = (textIndex + 1) % textArray.length;
-        setTimeout(typeText, 500);
+        setTimeout(typeText, 400); // পরের লেখা শুরু হওয়ার সময়
     }
 }
 
