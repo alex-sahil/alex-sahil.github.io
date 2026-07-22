@@ -1,126 +1,51 @@
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+const typing = document.getElementById("typing");
 
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 16;
-
-let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(1);
-
-
-
-function draw(){
-
-ctx.fillStyle = "rgba(0,0,0,0.06)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-
-ctx.fillStyle="#00ff66";
-ctx.font=fontSize+"px monospace";
-
-
-for(let i=0;i<drops.length;i++){
-
-let text = letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(
-text,
-i*fontSize,
-drops[i]*fontSize
-);
-
-
-if(drops[i]*fontSize > canvas.height && Math.random()>0.975){
-
-drops[i]=0;
-
-}
-
-drops[i]++;
-
-}
-
-}
-
-
-setInterval(draw,35);
-
-
-
-window.addEventListener("resize",()=>{
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-columns=Math.floor(canvas.width/fontSize);
-drops=Array(columns).fill(1);
-
-});
-
-
-
-
-// Hacker typing effect
-
-const typing=document.getElementById("typing");
-
-
-const messages=[
-
-"INITIALIZING SYSTEM...",
-"CONNECTING TO SECURE SERVER...",
-"BYPASSING FIREWALL...",
-"ACCESS GRANTED ✔",
+const texts = [
+"ALEX SAHIL YOUR FATHER",
+"KING OF MY OWN WORLD",
+"DON'T PLAY WITH ME",
+"RULES ARE MADE BY ME",
+"NO COPY ONLY ORIGINAL",
 "CYBER MODE ACTIVATED"
-
 ];
 
-
-let line=0;
-let char=0;
-
+let textIndex = 0;
+let charIndex = 0;
 
 
-function hackerType(){
+function typingEffect(){
 
+if(charIndex < texts[textIndex].length){
 
-if(line < messages.length){
+typing.innerHTML += texts[textIndex].charAt(charIndex);
 
+charIndex++;
 
-if(char < messages[line].length){
+setTimeout(typingEffect,100);
 
-typing.innerHTML += messages[line].charAt(char);
+}
 
-char++;
+else{
 
-setTimeout(hackerType,70);
+setTimeout(()=>{
 
+typing.innerHTML="";
 
-}else{
+charIndex=0;
 
+textIndex++;
 
-typing.innerHTML += "<br>";
+if(textIndex >= texts.length){
+textIndex=0;
+}
 
-line++;
+typingEffect();
 
-char=0;
+},1500);
 
-setTimeout(hackerType,500);
-
+}
 
 }
 
 
-}
-
-
-}
-
-
-
-hackerType();
+typingEffect();
